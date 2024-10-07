@@ -1,0 +1,95 @@
+object PesquisarPedido: TPesquisarPedido
+  Left = 0
+  Top = 0
+  Caption = 'Pesquisar Pedido'
+  ClientHeight = 442
+  ClientWidth = 628
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  KeyPreview = True
+  Position = poScreenCenter
+  OnActivate = FormActivate
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnKeyPress = FormKeyPress
+  TextHeight = 15
+  object dbgPedidos: TDBGrid
+    Left = 0
+    Top = 73
+    Width = 628
+    Height = 369
+    Align = alClient
+    DataSource = dsPedidos
+    TabOrder = 0
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -12
+    TitleFont.Name = 'Segoe UI'
+    TitleFont.Style = []
+    OnDblClick = dbgPedidosDblClick
+    OnKeyDown = dbgPedidosKeyDown
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'NumeroPedido'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'CodigoCliente'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Nome'
+        Width = 250
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'InseridoEm'
+        Width = 64
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'ValorTotal'
+        Width = 64
+        Visible = True
+      end>
+  end
+  object GroupBox1: TGroupBox
+    Left = 0
+    Top = 0
+    Width = 628
+    Height = 73
+    Align = alTop
+    Caption = 'Pesquisa'
+    TabOrder = 1
+    ExplicitWidth = 622
+    object lblCodigo: TLabel
+      Left = 32
+      Top = 32
+      Width = 39
+      Height = 15
+      Caption = 'C'#243'digo'
+    end
+    object edtCodigo: TEdit
+      Left = 88
+      Top = 29
+      Width = 73
+      Height = 23
+      TabOrder = 0
+      OnExit = edtCodigoExit
+    end
+  end
+  object dsPedidos: TDataSource
+    DataSet = DataModuloPedido.fdQryPesquisaPedido
+    Left = 304
+    Top = 256
+  end
+end

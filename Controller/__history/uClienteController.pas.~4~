@@ -1,0 +1,27 @@
+unit uClienteController;
+
+interface
+
+uses
+  uClienteModel;
+
+type
+  TClienteController = class
+  private
+    { private declarations }
+  public
+    { public declarations }
+    function  Inserir(pCliente: tCliente; var pErro: String): Boolean;
+  end;
+
+implementation
+
+{ TClienteController }
+
+function TClienteController.Inserir(pCliente: tCliente;
+  var pErro: String): Boolean;
+begin
+  //
+end;
+
+end.

@@ -1,0 +1,280 @@
+object DataModuleCliente: TDataModuleCliente
+  Height = 490
+  Width = 953
+  PixelsPerInch = 120
+  object fdQryCliente: TFDQuery
+    Connection = DataModulo.fdConexao
+    SQL.Strings = (
+      '')
+    Left = 80
+    Top = 72
+  end
+  object fdQryPesquisaCliente: TFDQuery
+    Connection = DataModulo.fdConexao
+    SQL.Strings = (
+      'Select * from Clientes'
+      'Where nome like('#39'%'#39'+ :nome +'#39'%'#39')')
+    Left = 232
+    Top = 72
+    ParamData = <
+      item
+        Name = 'NOME'
+        DataType = ftString
+        ParamType = ptInput
+      end>
+  end
+  object fdQryInserirCliente: TFDQuery
+    Connection = DataModulo.fdConexao
+    SQL.Strings = (
+      'Insert into Clientes('
+      '  Nome,'
+      '  Tipo,'
+      '  CPF,'
+      '  CNPJ,'
+      '  CEP,'
+      '  Endereco,'
+      '  Numero,'
+      '  Bairro,'
+      '  Cidade,'
+      '  Estado,'
+      '  Complemento,'
+      '  Telefone,'
+      '  Celular,'
+      '  Email,'
+      '  InseridoPor,'
+      '  ModificadoEm,'
+      '  ModificadoPor'
+      ')'
+      'values('
+      '  :Nome,'
+      '  :Tipo,'
+      '  :CPF,'
+      '  :CNPJ,'
+      '  :CEP,'
+      '  :Endereco,'
+      '  :Numero,'
+      '  :Bairro,'
+      '  :Cidade,'
+      '  :Estado,'
+      '  :Complemento,'
+      '  :Telefone,'
+      '  :Celular,'
+      '  :Email,'
+      '  :InseridoPor,'
+      '  :ModificadoEm,'
+      '  :ModificadoPor'
+      ')')
+    Left = 384
+    Top = 72
+    ParamData = <
+      item
+        Name = 'NOME'
+        DataType = ftString
+        ParamType = ptInput
+      end
+      item
+        Name = 'TIPO'
+        DataType = ftString
+        ParamType = ptInput
+      end
+      item
+        Name = 'CPF'
+        DataType = ftString
+        ParamType = ptInput
+      end
+      item
+        Name = 'CNPJ'
+        DataType = ftString
+        ParamType = ptInput
+      end
+      item
+        Name = 'CEP'
+        DataType = ftString
+        ParamType = ptInput
+      end
+      item
+        Name = 'ENDERECO'
+        DataType = ftString
+        ParamType = ptInput
+      end
+      item
+        Name = 'NUMERO'
+        DataType = ftInteger
+        ParamType = ptInput
+      end
+      item
+        Name = 'BAIRRO'
+        DataType = ftString
+        ParamType = ptInput
+      end
+      item
+        Name = 'CIDADE'
+        DataType = ftString
+        ParamType = ptInput
+      end
+      item
+        Name = 'ESTADO'
+        DataType = ftString
+        ParamType = ptInput
+      end
+      item
+        Name = 'COMPLEMENTO'
+        DataType = ftString
+        ParamType = ptInput
+      end
+      item
+        Name = 'TELEFONE'
+        DataType = ftString
+        ParamType = ptInput
+      end
+      item
+        Name = 'CELULAR'
+        DataType = ftString
+        ParamType = ptInput
+      end
+      item
+        Name = 'EMAIL'
+        DataType = ftString
+        ParamType = ptInput
+      end
+      item
+        Name = 'INSERIDOPOR'
+        DataType = ftInteger
+        ParamType = ptInput
+      end
+      item
+        Name = 'MODIFICADOEM'
+        DataType = ftDateTime
+        ParamType = ptInput
+      end
+      item
+        Name = 'MODIFICADOPOR'
+        DataType = ftInteger
+        ParamType = ptInput
+      end>
+  end
+  object fdQryAlterarCliente: TFDQuery
+    Connection = DataModulo.fdConexao
+    SQL.Strings = (
+      'Update Clientes set'
+      '  Nome = :Nome,'
+      '  Tipo = :Tipo,'
+      '  CPF = :CPF,'
+      '  CNPJ = :CNPJ,'
+      '  CEP = :CEP,'
+      '  Endereco = :Endereco,'
+      '  Numero = :Numero,'
+      '  Bairro = :Bairro,'
+      '  Cidade = :Cidade,'
+      '  Estado = :Estado,'
+      '  Complemento = :Complemento,'
+      '  Telefone = :Telefone,'
+      '  Celular = :Celular,'
+      '  Email = :Email,'
+      '  ModificadoEm = :ModificadoEm,'
+      '  ModificadoPor = :ModificadoPor'
+      'Where Codigo = :Codigo')
+    Left = 552
+    Top = 72
+    ParamData = <
+      item
+        Name = 'NOME'
+        DataType = ftString
+        ParamType = ptInput
+      end
+      item
+        Name = 'TIPO'
+        DataType = ftString
+        ParamType = ptInput
+      end
+      item
+        Name = 'CPF'
+        DataType = ftString
+        ParamType = ptInput
+      end
+      item
+        Name = 'CNPJ'
+        DataType = ftString
+        ParamType = ptInput
+      end
+      item
+        Name = 'CEP'
+        DataType = ftString
+        ParamType = ptInput
+      end
+      item
+        Name = 'ENDERECO'
+        DataType = ftString
+        ParamType = ptInput
+      end
+      item
+        Name = 'NUMERO'
+        DataType = ftInteger
+        ParamType = ptInput
+      end
+      item
+        Name = 'BAIRRO'
+        DataType = ftString
+        ParamType = ptInput
+      end
+      item
+        Name = 'CIDADE'
+        DataType = ftString
+        ParamType = ptInput
+      end
+      item
+        Name = 'ESTADO'
+        DataType = ftString
+        ParamType = ptInput
+      end
+      item
+        Name = 'COMPLEMENTO'
+        DataType = ftString
+        ParamType = ptInput
+      end
+      item
+        Name = 'TELEFONE'
+        DataType = ftString
+        ParamType = ptInput
+      end
+      item
+        Name = 'CELULAR'
+        DataType = ftString
+        ParamType = ptInput
+      end
+      item
+        Name = 'EMAIL'
+        DataType = ftString
+        ParamType = ptInput
+      end
+      item
+        Name = 'MODIFICADOEM'
+        DataType = ftDateTime
+        ParamType = ptInput
+      end
+      item
+        Name = 'MODIFICADOPOR'
+        DataType = ftInteger
+        ParamType = ptInput
+      end
+      item
+        Name = 'CODIGO'
+        DataType = ftInteger
+        ParamType = ptInput
+      end>
+  end
+  object fdQryExcluirCliente: TFDQuery
+    Connection = DataModulo.fdConexao
+    SQL.Strings = (
+      'Delete from Clientes'
+      'Where Codigo = :Codigo')
+    Left = 720
+    Top = 72
+    ParamData = <
+      item
+        Name = 'CODIGO'
+        DataType = ftInteger
+        ParamType = ptInput
+      end>
+  end
+end

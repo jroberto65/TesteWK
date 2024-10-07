@@ -1,0 +1,73 @@
+unit uClienteController;
+
+interface
+
+uses
+  UDataModuloCliente, uClienteModel, System.SysUtils;
+
+type
+  TClienteController = class
+  private
+    { private declarations }
+  public
+    { public declarations }
+    Constructor Create;
+    destructor Destroy; override;
+    procedure pesquisarCliente(pNome: string);
+    procedure CarregarCliente(pCliente: TCliente; pCodigoCliente: Integer);
+    function  Inserir(pCliente: tCliente; var pErro: String): Boolean;
+    function  Alterar(pCliente: tCliente; var pErro: String): Boolean;
+    function  Excluir(pCodigoCliente: Integer; var pErro: String): Boolean;
+    function getDataSet: TDataset;
+  end;
+
+implementation
+
+{ TClienteController }
+
+function TClienteController.Alterar(pCliente: tCliente;
+  var pErro: String): Boolean;
+begin
+  Result := DataModuleCliente.AlterarCliente(pCliente, pErro);
+end;
+
+procedure TClienteController.CarregarCliente(pCliente: TCliente;
+  pCodigoCliente: Integer);
+begin
+  DataModuleCliente.CarregarCliente(pCliente, pCodigoCliente);
+end;
+
+constructor TClienteController.Create;
+begin
+  DataModuleCliente := TDataModuleCliente.Create(nil);
+end;
+
+destructor TClienteController.Destroy;
+begin
+  FreeAndNil(DataModuleCliente);
+  inherited;
+end;
+
+function TClienteController.Excluir(pCodigoCliente: Integer;
+  var pErro: String): Boolean;
+begin
+  Result := DataModuleCliente.ExcluirCliente(pCodigoCliente, pErro);
+end;
+
+function TClienteController.getDataSet: TDataset;
+begin
+  Result := DataModuleCliente.fdQryPesquisaCliente;
+end;
+
+function TClienteController.Inserir(pCliente: tCliente;
+  var pErro: String): Boolean;
+begin
+  Result := DataModuleCliente.InserirCliente(pCliente, pErro);
+end;
+
+procedure TClienteController.pesquisarCliente(pNome: string);
+begin
+  DataModuleCliente.pesquisarCliente(pNome);
+end;
+
+end.

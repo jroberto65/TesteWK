@@ -1,0 +1,23 @@
+program ExemploMVC;
+
+uses
+  Vcl.Forms,
+  UPrincipal in '..\View\UPrincipal.pas' {frmPrincipal},
+  UCadastroCliente in '..\View\UCadastroCliente.pas' {CadastroCliente},
+  uFuncao in '..\View\uFuncao.pas',
+  UCliente in 'C:\Projetos\UCliente.pas',
+  uClienteModel in '..\Model\uClienteModel.pas',
+  uClienteController in '..\Controller\uClienteController.pas',
+  UDataModulo in '..\Dao\UDataModulo.pas' {DataModulo: TDataModule},
+  UDataModuloCliente in 'UDataModuloCliente.pas' {DataModuleCliente: TDataModule},
+  UPedidoVendas in '..\View\UPedidoVendas.pas' {PedidoVendas};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TDataModulo, DataModulo);
+  Application.CreateForm(Tfrmprincipal, frmprincipal);
+  Application.Run;
+end.

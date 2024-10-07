@@ -1,0 +1,122 @@
+object DataModuleCliente: TDataModuleCliente
+  Height = 490
+  Width = 953
+  PixelsPerInch = 120
+  object fdQryCliente: TFDQuery
+    Connection = DataModulo.fdConexao
+    SQL.Strings = (
+      '')
+    Left = 80
+    Top = 72
+  end
+  object fdQryPesquisaCliente: TFDQuery
+    Connection = DataModulo.fdConexao
+    SQL.Strings = (
+      'Select * from Clientes'
+      '-- Where nome like :nome')
+    Left = 240
+    Top = 72
+    object fdQryPesquisaClienteCodigo: TFDAutoIncField
+      FieldName = 'Codigo'
+      Origin = 'Codigo'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object fdQryPesquisaClienteNome: TStringField
+      FieldName = 'Nome'
+      Origin = 'Nome'
+      Required = True
+      Size = 250
+    end
+    object fdQryPesquisaClienteCidade: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'Cidade'
+      Origin = 'Cidade'
+      Size = 150
+    end
+    object fdQryPesquisaClienteUF: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'UF'
+      Origin = 'UF'
+      Size = 2
+    end
+  end
+  object fdQryInserirCliente: TFDQuery
+    Connection = DataModulo.fdConexao
+    SQL.Strings = (
+      'Insert into Clientes('
+      '  Nome,'
+      '  Cidade,'
+      '  UF'
+      ')'
+      'values('
+      '  :Nome,'
+      '  :Cidade,'
+      '  :UF'
+      ')')
+    Left = 400
+    Top = 72
+    ParamData = <
+      item
+        Name = 'NOME'
+        DataType = ftString
+        ParamType = ptInput
+      end
+      item
+        Name = 'CIDADE'
+        DataType = ftString
+        ParamType = ptInput
+      end
+      item
+        Name = 'UF'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end>
+  end
+  object fdQryAlterarCliente: TFDQuery
+    Connection = DataModulo.fdConexao
+    SQL.Strings = (
+      'Update Clientes set'
+      '  Nome = :Nome,'
+      '  Cidade = :Cidade,'
+      '  UF = :UF'
+      'Where Codigo = :Codigo')
+    Left = 560
+    Top = 72
+    ParamData = <
+      item
+        Name = 'NOME'
+        DataType = ftString
+        ParamType = ptInput
+      end
+      item
+        Name = 'CIDADE'
+        DataType = ftString
+        ParamType = ptInput
+      end
+      item
+        Name = 'UF'
+        DataType = ftString
+        ParamType = ptInput
+      end
+      item
+        Name = 'CODIGO'
+        DataType = ftInteger
+        ParamType = ptInput
+      end>
+  end
+  object fdQryExcluirCliente: TFDQuery
+    Connection = DataModulo.fdConexao
+    SQL.Strings = (
+      'Delete from Clientes'
+      'Where Codigo = :Codigo')
+    Left = 720
+    Top = 72
+    ParamData = <
+      item
+        Name = 'CODIGO'
+        DataType = ftInteger
+        ParamType = ptInput
+      end>
+  end
+end

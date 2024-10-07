@@ -1,0 +1,49 @@
+unit UPesquisarPedido;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Grids,
+  Vcl.DBGrids;
+
+type
+  TPesquisarPedido = class(TForm)
+    dbgPedidos: TDBGrid;
+    GroupBox1: TGroupBox;
+    lblCodigo: TLabel;
+    edtCodigo: TEdit;
+    dsPedidos: TDataSource;
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure FormActivate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  PesquisarPedido: TPesquisarPedido;
+
+implementation
+
+uses
+  UDataModuloPedido;
+
+{$R *.dfm}
+
+procedure TPesquisarPedido.FormActivate(Sender: TObject);
+begin
+  edtCodigo.SetFocus;
+end;
+
+procedure TPesquisarPedido.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+  begin
+    Key := #0;
+    perform(WM_NEXTDLGCTL,0,0);
+  end;
+end;
+
+end.

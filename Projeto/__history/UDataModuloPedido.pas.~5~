@@ -1,0 +1,82 @@
+unit UDataModuloPedido;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.Client,
+  Data.DB, FireDAC.Comp.DataSet, UPedidosModel;
+
+type
+  TDataModuloPedido = class(TDataModule)
+    fdQryInserirPedido: TFDQuery;
+    fdTransInserir: TFDTransaction;
+    fdQryPesquisaPedido: TFDQuery;
+    fdQryPesquisaPedidoNumero: TFDAutoIncField;
+    fdQryPesquisaPedidoInseridoEm: TDateTimeField;
+    fdQryPesquisaPedidoCodigoCliente: TIntegerField;
+    fdQryPesquisaPedidoValorTotal: TBCDField;
+    fdQryPesquisaPedidoNome: TStringField;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    CodigoPedido: Integer;
+    function InserirPedido(pPedido: TPedidos; out pErro: string): Boolean;
+    procedure pesquisarPedido; overload;
+  end;
+
+var
+  DataModuloPedido: TDataModuloPedido;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+{ TDataModuloPedido }
+
+function TDataModuloPedido.InserirPedido(pPedido: TPedidos;
+  out pErro: string): Boolean;
+var
+  sqlQuery : TFDQuery;
+begin
+  sqlQuery := TFDQuery.Create(self);
+  sqlQuery.SQL.Text := 'Select max(numero) as numero from pedidos';
+  CodigoPedido := 0;
+  with fdQryInserirPedido, pPedido do
+  begin
+    ParamByName('Numero').Value := Numero;
+    ParamByName('EmitidoEm').Value := EmitidoEm;
+    ParamByName('CodigoCliente').Value := CodigoCliente;
+    ParamByName('ValorTotal').Value := ValorTotal;
+    try
+      Transaction.StartTransaction;
+      ExecSQL();
+      Transaction.Commit;
+      sqlQuery.Open;
+      if  sqlQuery.RecordCount > 0 then
+        CodigoPedido := sqlQuery.FieldByName('Numero').AsInteger;
+      FreeAndNil(sqlQuery);
+      Result := True;
+    except on E: Exception do
+      begin
+        Transaction.Rollback;
+        pErro := 'Erro ao tentar inserir o pedido: ' + sLineBreak +  e.Message;
+        Result := False;
+      end;
+    end;
+  end;
+end;
+
+procedure TDataModuloPedido.pesquisarPedido;
+begin
+  if fdQryPesquisaPedido.Active then
+    fdQryPesquisaPedido.Close;
+  fdQryPesquisaPedido.Open;
+  fdQryPesquisaPedido.First;
+end;
+
+end.

@@ -1,0 +1,44 @@
+object DataModuloPedido: TDataModuloPedido
+  Height = 422
+  Width = 822
+  PixelsPerInch = 120
+  object fdQryInserirCliente: TFDQuery
+    Connection = DataModulo.fdConexao
+    Transaction = fdTransInserir
+    SQL.Strings = (
+      'Insert into Clientes('
+      '  Nome,'
+      '  Cidade,'
+      '  UF'
+      ')'
+      'values('
+      '  :Nome,'
+      '  :Cidade,'
+      '  :UF'
+      ')')
+    Left = 240
+    Top = 48
+    ParamData = <
+      item
+        Name = 'NOME'
+        DataType = ftString
+        ParamType = ptInput
+      end
+      item
+        Name = 'CIDADE'
+        DataType = ftString
+        ParamType = ptInput
+      end
+      item
+        Name = 'UF'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end>
+  end
+  object fdTransInserir: TFDTransaction
+    Connection = DataModulo.fdConexao
+    Left = 240
+    Top = 144
+  end
+end

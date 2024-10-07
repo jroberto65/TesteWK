@@ -1,0 +1,28 @@
+unit UPedidosController;
+
+interface
+
+uses
+  UDataModuloPedido, UPedidosModel, System.SysUtils, db;
+
+type
+  TClienteController = class
+  private
+    { private declarations }
+    FDataSet: TDataset;
+  public
+    { public declarations }
+    function  Inserir(pPedido: TPedidos; var pErro: String): Boolean;
+  end;
+
+implementation
+
+{ TClienteController }
+
+function TClienteController.Inserir(pPedido: TPedidos;
+  var pErro: String): Boolean;
+begin
+  Result := DataModuloPedido.InserirPedido(pPedido, pErro);
+end;
+
+end.

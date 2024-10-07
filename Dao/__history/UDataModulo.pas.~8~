@@ -1,0 +1,71 @@
+unit UDataModulo;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, ZAbstractConnection, ZConnection, Data.DB,
+  ZAbstractRODataset, ZAbstractDataset, ZDataset, Data.Win.ADODB, Data.SqlExpr,
+  Forms, Dialogs, IniFiles, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
+  FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.VCLUI.Wait,
+  FireDAC.Comp.Client;
+
+type
+  TDataModulo = class(TDataModule)
+    fdConexao: TFDConnection;
+    procedure DataModuleCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DataModulo: TDataModulo;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+procedure TDataModulo.DataModuleCreate(Sender: TObject);
+var
+  ArqIni    : TIniFile;
+  registro, Secao  : String;
+begin
+  //Cria Arquivo de configuração de video.
+  try
+    ArqIni := TIniFile.Create(ExtractFilePath(Application.ExeName) +'ADOExemploMVC.ini');
+    if FileExists(ExtractFilePath(Application.ExeName) +'ADOExemploMVC.ini') then
+    begin
+    registro := ArqIni.ReadString(Secao, 'Provider', '') +
+                ArqIni.ReadString(Secao, 'Password', '') +
+                ArqIni.ReadString(Secao, 'Persist Security Info', '') +
+                ArqIni.ReadString(Secao, 'User ID', '') +
+                ArqIni.ReadString(Secao, 'Initial Catalog', '') +
+                ArqIni.ReadString(Secao, 'Data Source', '') +
+                ArqIni.ReadString(Secao, 'Use Procedure for Prepare', '') +
+                ArqIni.ReadString(Secao, 'Auto Translate', '') +
+                ArqIni.ReadString(Secao, 'Packet Size', '') +
+                ArqIni.ReadString(Secao, 'Workstation ID', '') +
+                ArqIni.ReadString(Secao, 'Use Encryption for Data', '') +
+                ArqIni.ReadString(Secao, 'Tag with column collation when possible', '');
+    end;
+    if Trim(registro) <> '' then
+    begin
+      adoConexao.ConnectionString := registro;
+      try
+        adoConexao.Connected := true
+      except
+        MessageDlg('Não foi possivel conectar ao banco de dados.', mtWarning, [mbOK], 0)
+      end;
+    end;
+    //Finalizando arquivo.
+    ArqIni.Free;
+  except
+  //  MessageDlg('Não foi possivel localizar configuração do banco de dados.', mtWarning, [mbOK], 0);
+  end;
+end;
+
+end.

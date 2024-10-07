@@ -1,0 +1,67 @@
+unit UPrincipal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ExtCtrls;
+
+type
+  TfrmPrincipal = class(TForm)
+    mmMenu: TMainMenu;
+    abelas1: TMenuItem;
+    Cadastros1: TMenuItem;
+    Relatrios1: TMenuItem;
+    Sobre1: TMenuItem;
+    Sair1: TMenuItem;
+    Cliente1: TMenuItem;
+    Clientes1: TMenuItem;
+    pnlPrincipal: TPanel;
+    procedure FormActivate(Sender: TObject);
+    procedure Sair1Click(Sender: TObject);
+    procedure Cliente1Click(Sender: TObject);
+    procedure Clientes1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmPrincipal: TfrmPrincipal;
+
+implementation
+
+{$R *.dfm}
+
+uses UCadastroCliente, UDataModulo, URelatorioCliente;
+
+procedure TfrmPrincipal.Cliente1Click(Sender: TObject);
+begin
+  CadastroCliente := TCadastroCliente.Create(Self);
+  CadastroCliente.ShowModal;
+end;
+
+procedure TfrmPrincipal.Clientes1Click(Sender: TObject);
+begin
+  RelatorioCliente := TRelatorioCliente.Create(Self);
+  RelatorioCliente.ShowModal;
+end;
+
+procedure TfrmPrincipal.FormActivate(Sender: TObject);
+begin
+  {
+  DataModulo.Adoconexao.Connected := True;
+  }
+end;
+
+procedure TfrmPrincipal.Sair1Click(Sender: TObject);
+begin
+  {
+  DataModulo.adoConexao.Connected := False;
+  }
+  Application.Terminate;
+  Close;
+end;
+
+end.

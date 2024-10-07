@@ -1,0 +1,56 @@
+unit UDataModulo;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, ZAbstractConnection, ZConnection, Data.DB,
+  ZAbstractRODataset, ZAbstractDataset, ZDataset, Data.Win.ADODB, Data.SqlExpr,
+  Forms, Dialogs;
+
+type
+  TDataModulo = class(TDataModule)
+    adoConexao: TADOConnection;
+    adoQuery: TADOQuery;
+    procedure DataModuleCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DataModulo: TDataModulo;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+procedure TDataModulo.DataModuleCreate(Sender: TObject);
+var
+  arquivoconfig    : TextFile;
+  registro         : String;
+begin
+  //Cria Arquivo de configuração de video.
+  try
+    AssignFile(arquivoconfig, ExtractFilePath(Application.ExeName)+'ADOExemploMVC.ini');
+    Reset(arquivoconfig);
+    Readln(arquivoconfig,registro);
+    if copy(registro,1,1)<>'' then
+    begin
+      adoConexao.ConnectionString := registro;
+      try
+        adoConexao.Connected := true
+      except
+        MessageDlg('Não foi possivel conectar ao banco de dados.', mtWarning, [mbOK], 0)
+      end;
+    end;
+    //Finalizando arquivo.
+    CloseFile(arquivoconfig);
+  except
+  //  MessageDlg('Não foi possivel localizar configuração de video.', mtWarning, [mbOK], 0);
+  end;
+end;
+
+end.

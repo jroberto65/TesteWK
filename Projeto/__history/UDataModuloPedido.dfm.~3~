@@ -1,0 +1,50 @@
+object DataModuloPedido: TDataModuloPedido
+  Height = 422
+  Width = 822
+  PixelsPerInch = 120
+  object fdQryInserirPedido: TFDQuery
+    Connection = DataModulo.fdConexao
+    Transaction = fdTransInserir
+    SQL.Strings = (
+      'Insert into Pedidos('
+      '  Numero,'
+      '  InseridoEm,'
+      '  CodigoCliente,'
+      '  ValorTotal'
+      ')'
+      'values('
+      '  :Numero,'
+      '  :InseridoEm,'
+      '  :CodigoCliente,'
+      '  :ValorTotal'
+      ')')
+    Left = 240
+    Top = 48
+    ParamData = <
+      item
+        Name = 'NUMERO'
+        DataType = ftInteger
+        ParamType = ptInput
+      end
+      item
+        Name = 'INSERIDOEM'
+        DataType = ftDateTime
+        ParamType = ptInput
+      end
+      item
+        Name = 'CODIGOCLIENTE'
+        DataType = ftInteger
+        ParamType = ptInput
+      end
+      item
+        Name = 'VALORTOTAL'
+        DataType = ftCurrency
+        ParamType = ptInput
+      end>
+  end
+  object fdTransInserir: TFDTransaction
+    Connection = DataModulo.fdConexao
+    Left = 240
+    Top = 144
+  end
+end

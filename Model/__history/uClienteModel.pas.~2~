@@ -1,0 +1,30 @@
+unit uClienteModel;
+
+interface
+TCliente = class()
+private
+  { private declarations }
+public
+  { public declarations }
+  property ID: integer read FID write FID;
+  property Codico Integer read FCodigo write FCodigo;
+  property Nome: String read FNome Write FNome;
+  property Endereco: String read FEndereco Write FEndereco;
+  property Numero: TIntegerField;
+  property CEP: String read FCEP Write FCEP;
+  property Bairro: String read FBairro Write FBairro;
+  property Cidade: String read FCidade Write FCidade;
+  property Estado: String read FEstado Write FEstado;
+  property Telefone: String read FTelefone Write FTelefone;
+  property Email: String read FEmail Write FEmail;
+  property CPF: String read FCPF Write FCPF;
+  property CNPJ: String read FCNPJ Write FCNPJ;
+  property Celular String read FCelular Write FCelular;
+  property Pais: String read FPais Write FPais;
+  property Complemento: String read FComplemento Write FComplemento;
+end;
+
+
+implementation
+
+end.

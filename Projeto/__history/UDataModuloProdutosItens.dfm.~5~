@@ -1,0 +1,71 @@
+object DataModuloProdutosItens: TDataModuloProdutosItens
+  Height = 509
+  Width = 926
+  PixelsPerInch = 120
+  object fdQryInserirPedidoItens: TFDQuery
+    Connection = DataModulo.fdConexao
+    Transaction = fdTransInserir
+    SQL.Strings = (
+      'Insert into PedidosItens('
+      '  Id,'
+      '  NumeroPedido,'
+      '  CodigoProduto,'
+      '  Quantidade,'
+      '  CodigoCliente,'
+      '  ValorUnitario,'
+      '  ValorTotal'
+      ')'
+      'values('
+      '  :Id,'
+      '  :NumeroPedido,'
+      '  :CodigoProduto,'
+      '  :Quantidade,'
+      '  :CodigoCliente,'
+      '  :ValorUnitario,'
+      '  :ValorTotal'
+      ')')
+    Left = 240
+    Top = 48
+    ParamData = <
+      item
+        Name = 'ID'
+        DataType = ftInteger
+        ParamType = ptInput
+      end
+      item
+        Name = 'NUMEROPEDIDO'
+        DataType = ftInteger
+        ParamType = ptInput
+      end
+      item
+        Name = 'CODIGOPRODUTO'
+        DataType = ftInteger
+        ParamType = ptInput
+      end
+      item
+        Name = 'QUANTIDADE'
+        DataType = ftCurrency
+        ParamType = ptInput
+      end
+      item
+        Name = 'CODIGOCLIENTE'
+        DataType = ftInteger
+        ParamType = ptInput
+      end
+      item
+        Name = 'VALORUNITARIO'
+        DataType = ftCurrency
+        ParamType = ptInput
+      end
+      item
+        Name = 'VALORTOTAL'
+        DataType = ftCurrency
+        ParamType = ptInput
+      end>
+  end
+  object fdTransInserir: TFDTransaction
+    Connection = DataModulo.fdConexao
+    Left = 240
+    Top = 144
+  end
+end

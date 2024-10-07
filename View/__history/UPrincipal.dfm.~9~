@@ -1,0 +1,92 @@
+object frmPrincipal: TfrmPrincipal
+  Left = 0
+  Top = 0
+  Caption = 'Menu principal'
+  ClientHeight = 493
+  ClientWidth = 1026
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  Menu = mmMenu
+  Position = poScreenCenter
+  WindowState = wsMaximized
+  OnActivate = FormActivate
+  TextHeight = 13
+  object pnlPrincipal: TPanel
+    Left = 0
+    Top = 452
+    Width = 1026
+    Height = 41
+    Align = alBottom
+    TabOrder = 0
+    ExplicitTop = 151
+    ExplicitWidth = 441
+    object lblEmpresa: TLabel
+      Left = 400
+      Top = 11
+      Width = 224
+      Height = 24
+      Caption = 'WK Technolohy Sistemas'
+      Color = clBtnFace
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -20
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentColor = False
+      ParentFont = False
+    end
+    object lblUsuarioLogado: TLabel
+      Left = 784
+      Top = 9
+      Width = 219
+      Height = 21
+      Caption = 'Usu'#225'rio logado: Adminisrador'
+      Color = clRed
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -17
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentColor = False
+      ParentFont = False
+    end
+  end
+  object mmMenu: TMainMenu
+    Left = 160
+    Top = 88
+    object abelas1: TMenuItem
+      Caption = 'Tabelas'
+    end
+    object Cadastros1: TMenuItem
+      Caption = 'Cadastros'
+      object Cliente1: TMenuItem
+        Caption = 'Cliente'
+        OnClick = Cliente1Click
+      end
+    end
+    object Vendas1: TMenuItem
+      Caption = 'Vendas'
+      object Pedidos1: TMenuItem
+        Caption = 'Pedidos'
+        OnClick = Pedidos1Click
+      end
+    end
+    object Relatrios1: TMenuItem
+      Caption = 'Relat'#243'rios'
+      object Clientes1: TMenuItem
+        Caption = 'Clientes'
+      end
+    end
+    object Sobre1: TMenuItem
+      Caption = 'Sobre'
+    end
+    object Sair1: TMenuItem
+      Caption = 'Sair'
+      OnClick = Sair1Click
+    end
+  end
+end

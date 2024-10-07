@@ -1,0 +1,45 @@
+object DataModulo: TDataModulo
+  OldCreateOrder = False
+  Height = 197
+  Width = 369
+  object conexao: TZConnection
+    ControlsCodePage = cCP_UTF16
+    Catalog = ''
+    Properties.Strings = (
+      'controls_cp=CP_UTF16')
+    AutoCommit = False
+    HostName = ''
+    Port = 0
+    Database = 'C:\Projetos\Bancos\Firebird\Sistema b'#225'sico\PROJETOBASICO.FDB'
+    User = 'sysdba'
+    Password = 'masterkey'
+    Protocol = 'firebirdd-2.5'
+    Left = 32
+    Top = 32
+  end
+  object zqryDM: TZQuery
+    Connection = conexao
+    Params = <>
+    Left = 152
+    Top = 32
+  end
+  object ZConnection1: TZConnection
+    ControlsCodePage = cCP_UTF16
+    Catalog = ''
+    HostName = 'JROBERTO_HOME\SQLEXPRESS2012'
+    Port = 0
+    Database = 'SISTEMADELOJA'
+    User = 'admin'
+    Password = 'mastersys'
+    Protocol = 'mssql'
+    LibraryLocation = 
+      'C:\Program Files (x86)\Microsoft SQL Server\MSSQL11.SQLEXPRESS20' +
+      '12\MSSQL\DATA\ntwdblib.dll'
+    Left = 256
+    Top = 120
+  end
+  object ADOConnection1: TADOConnection
+    Left = 64
+    Top = 128
+  end
+end

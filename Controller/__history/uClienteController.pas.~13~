@@ -1,0 +1,83 @@
+unit uClienteController;
+
+interface
+
+uses
+  UDataModuloCliente, uClienteModel, System.SysUtils, db;
+
+type
+  TClienteController = class
+  private
+    { private declarations }
+    FDataSet: TDataset;
+  public
+    { public declarations }
+    Constructor Create(var ADataSource: TDataSource);
+    destructor Destroy; override;
+    procedure pesquisarCliente(pNome: string); overload;
+    procedure pesquisarCliente; overload;
+    procedure CarregarCliente(pCliente: TCliente; pCodigoCliente: Integer);
+    function  Inserir(pCliente: tCliente; var pErro: String): Boolean;
+    function  Alterar(pCliente: tCliente; var pErro: String): Boolean;
+    function  Excluir(pCodigoCliente: Integer; var pErro: String): Boolean;
+    function getDataSet: TDataset;
+  end;
+
+implementation
+
+{ TClienteController }
+
+function TClienteController.Alterar(pCliente: tCliente;
+  var pErro: String): Boolean;
+begin
+  Result := DataModuleCliente.AlterarCliente(pCliente, pErro);
+end;
+
+procedure TClienteController.CarregarCliente(pCliente: TCliente;
+  pCodigoCliente: Integer);
+begin
+  DataModuleCliente.CarregarCliente(pCliente, pCodigoCliente);
+end;
+
+constructor TClienteController.Create(var ADataSource: TDataSource);
+begin
+  DataModuleCliente := TDataModuleCliente.Create(nil);
+  ADataSource.DataSet := DataModuleCliente.fdQryPesquisaCliente;
+end;
+
+destructor TClienteController.Destroy;
+begin
+  FreeAndNil(DataModuleCliente);
+  inherited;
+end;
+
+function TClienteController.Excluir(pCodigoCliente: Integer;
+  var pErro: String): Boolean;
+begin
+  Result := DataModuleCliente.ExcluirCliente(pCodigoCliente, pErro);
+end;
+
+function TClienteController.getDataSet: TDataset;
+begin
+  Result := FDataset;
+end;
+
+function TClienteController.Inserir(pCliente: tCliente;
+  var pErro: String): Boolean;
+begin
+  Result := DataModuleCliente.InserirCliente(pCliente, pErro);
+end;
+
+procedure TClienteController.pesquisarCliente;
+begin
+  DataModuleCliente.pesquisarCliente;
+  FDataSet := DataModuleCliente.fdQryPesquisaCliente;
+end;
+
+procedure TClienteController.pesquisarCliente(pNome: string);
+begin
+  DataModuleCliente.pesquisarCliente(pNome);
+  FDataSet := DataModuleCliente.fdQryPesquisaCliente;
+end;
+
+end.

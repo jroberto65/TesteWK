@@ -1,0 +1,27 @@
+unit UPedidosModel;
+
+interface
+uses
+  System.SysUtils;
+type
+  TPedidos = class
+  private
+    { private declarations }
+    FNumero: Integer;
+    FEmitidoEm: TDateTime;
+    FCodigoCliente: Integer;
+    FValorTotal: Double;
+  public
+    { public declarations }
+    //Utilizadn leitura e escrita do prórpio Delphi
+    property Numero: Integer read FNumero write FNumero;
+    property EmitidoEm: TDateTime read FEmitidoEm write FEmitidoEm;
+    property CodigoCliente: Integer read FCodigoCliente Write FCodigoCliente;
+    property ValorTotal: Double read FValorTotal Write FValorTotal;
+  end;
+
+implementation
+
+{ TPedidos }
+
+end.
