@@ -85,6 +85,7 @@ CREATE TABLE `pedidositens` (
   `ValorTotal` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`Id`),
   KEY `fk_PedidosItens_CodigoProduto` (`CodigoProduto`),
+  CONSTRAINT `fk_PedidosItens_NumeroPedido` FOREIGN KEY (`NumeroPedido`) REFERENCES `pedidos` (`NumeroPedido`),
   CONSTRAINT `fk_PedidosItens_CodigoProduto` FOREIGN KEY (`CodigoProduto`) REFERENCES `produtos` (`Codigo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
