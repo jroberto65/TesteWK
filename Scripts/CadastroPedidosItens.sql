@@ -9,4 +9,5 @@ CREATE TABLE PedidosItens(
     ValorTotal decimal(10,2)
 );
 
+Alter table PedidosItens add constraint fk_PedidosItens_NumeroPedido foreign key(NumeroPedido) references pedidos(NumeroPedido);
 Alter table PedidosItens add constraint fk_PedidosItens_CodigoProduto foreign key(CodigoProduto) references Produtos(Codigo);
